@@ -58,6 +58,10 @@ int main()
         {
             x++;
         }
+        if(x<0||x>=width-2||y<0||y>=height-2){
+            cout<<"Game Over!"<<endl;
+            break;
+        }
         
     }
     return 0;
