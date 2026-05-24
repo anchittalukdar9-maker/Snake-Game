@@ -1,8 +1,14 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 char direction;
 int height = 10, width = 20;
 int x = (width / 2) - 2, y = (height / 2) - 2;
+    //food spawning system
+   
+int fx;
+int fy;
 
 void draw()
 {
@@ -19,6 +25,8 @@ void draw()
             if (k == x && j == y)
             {
                 cout << "O";
+            }else if(k==fx&&j==fy){
+                cout<<"@";
             }
             else
             {
@@ -35,6 +43,14 @@ void draw()
 }
 int main()
 {
+    srand(time(0));
+    fx = rand() % (width - 2);
+    fy = rand() % (height -2);
+    //overlap of food and snake check
+    while(fx==x&&fy==y){
+        fx = rand() % (width - 2);
+        fy = rand() % (height -2);
+    }
     while (true)
     {
         system("cls");
@@ -58,6 +74,7 @@ int main()
         {
             x++;
         }
+        // check for wall collision
         if(x<0||x>=width-2||y<0||y>=height-2){
             cout<<"Game Over!"<<endl;
             break;
