@@ -97,8 +97,6 @@ int main()
         //food capture and new generation
         if(x==fx&&y==fy){
             taillength++;
-            tailx[taillength-1] = x;
-            taily[taillength-1] = y;
             fx = rand() % (width - 2);
             fy = rand() % (height -2);
             while(fx==x&&fy==y){
@@ -106,10 +104,16 @@ int main()
                 fy = rand() % (height -2);
             }
         }
-        // check for wall collision
+        // check for wall and body collision
         if(x<0||x>=width-2||y<0||y>=height-2){
             cout<<"Game Over!"<<endl;
             break;
+        }
+        for(int i=1;i<taillength;i++){
+            if(tailx[i]==x&&taily[i]==y){
+                cout<<"Game Over!"<<endl;
+                return 0;
+            }
         }
         
     }
