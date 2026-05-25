@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <conio.h>
+#include <windows.h>
 using namespace std;
 char direction;
 int height = 10, width = 20;
@@ -69,8 +71,10 @@ int main()
         system("cls");
 
         draw();
-        cout << "Enter direction (W/A/S/D): ";
-        cin >> direction;
+        if (_kbhit())
+        {
+            direction =_getch();
+        }
         //body coordinate setting
         for(int i=taillength-1;i>0;i--){
             tailx[i] = tailx[i-1];
@@ -112,10 +116,10 @@ int main()
         for(int i=1;i<taillength;i++){
             if(tailx[i]==x&&taily[i]==y){
                 cout<<"Game Over!"<<endl;
-                return 0;
+                break;
             }
         }
-        
+        Sleep(200);//game speed control
     }
     return 0;
 }
